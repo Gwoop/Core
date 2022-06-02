@@ -5,17 +5,25 @@ import requests
 from PyDMXControl.controllers import uDMXController
 from PyDMXControl.profiles.Generic import Dimmer
 import configparser
-
-
-#from dmx import Colour, DMXInterface, DMXLight3Slot, DMXUniverse
-
-
 from ui.Main import Ui_MainWindow
 
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 
-config = {}
+
+
+class API:
+    def apimain(self):
+        print("API")
+        response = requests.get('https://example.com')
+        response1 = requests.get('https://python-scripts.com/loops-for-while')
+
+        self.ui.comboBox_2.addItem(response.text)
+        self.ui.comboBox_7.addItem(response1.text)
+        """for count in range(response):
+            {
+                self.ui.comboBox_2.addItem(count)
+            }"""
 
 
 
@@ -26,13 +34,23 @@ class Init:
 
         print("dmxmain work!")
 
-        dmx = uDMXController()
-        fixture = dmx.add_fixture(Dimmer, name="test")
-        fixture.dim(255, 5000) # первое значение интенсивность второе время
-        dmx.web_control()
-        dmx.debug_control()
-        dmx.sleep_till_enter()
-        dmx.close()
+        try:
+            dmx = uDMXController()
+            fixture = dmx.add_fixture(Dimmer, name="test")
+            fixture.dim(255, 5000) # первое значение интенсивность второе время
+            dmx.web_control()
+            dmx.debug_control()
+            dmx.sleep_till_enter()
+            dmx.close()
+
+
+
+
+        except Exception:
+
+            print(Exception)
+
+
 
     def Initconf(self):
         config = configparser.ConfigParser()
@@ -138,32 +156,40 @@ class Init:
 """
 
 class MainWindow(QtWidgets.QMainWindow):
-
     def __init__(self):
+
         super(MainWindow, self).__init__()
         self.dmxmain = None
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.ui.pushButton.clicked.connect(self.click1)
         self.ui.pushButton_7.clicked.connect(self.click7)
+
         self.ui.comboBox_4.addItem("RGB")
+        self.ui.comboBox_4.addItem("RGB")
+
+        #self.ui.comboBox_2.addItem("DMX")
+
         self.ui.comboBox_3.addItem("DMX")
         self.ui.comboBox_3.addItem("RDM")
         self.ui.comboBox_3.addItem("SPI")
-        self.ui.comboBox_5.addItem("250000")
-        self.ui.comboBox_6.addItem("0-4")
-        self.ui.comboBox.addItem("0-16386")
 
+        self.ui.comboBox_5.addItem("250000")
+
+        self.ui.comboBox_6.addItem("0-4")
+        self.ui.comboBox_6.addItem("0-3")
+        self.ui.comboBox_6.addItem("0-2")
+
+        self.ui.comboBox.addItem("0-16386")
+        self.ui.comboBox.addItem("0-512")
+        API.apimain(self)
         #self.ui.comboBox_3.setCurrentText("DMX")
 
     def click1(self):
-
         Init.dmxmain(self)
 
     def click7(self):
-
         text = self.ui.lineEdit_2.text()
-
         self.ui.label_21.setText(text)
 """
         url = "https://github.com/TemaTerbi/YtDownloader2.0"
@@ -178,9 +204,8 @@ class MainWindow(QtWidgets.QMainWindow):
 
 
 if __name__ == "__main__":
-
-
     app = QtWidgets.QApplication([])
+
     application = MainWindow()
     window = QtWidgets.QMainWindow()
     application.show()

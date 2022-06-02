@@ -182,55 +182,12 @@ background-color: rgb(45, 45, 45);</string>
     </item>
    </layout>
   </widget>
-  <widget class="Menu" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1000</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menu">
-    <property name="title">
-     <string>Главная</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menu_2">
-    <property name="title">
-     <string>Файл</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menu_3">
-    <property name="title">
-     <string>Инструменты</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menu_4">
-    <property name="title">
-     <string>Помощь</string>
-    </property>
-    <addaction name="action"/>
-    <addaction name="separator"/>
-   </widget>
-   <addaction name="menu"/>
-   <addaction name="menu_2"/>
-   <addaction name="menu_3"/>
-   <addaction name="menu_4"/>
-  </widget>
   <action name="action">
    <property name="text">
     <string>О программе</string>
    </property>
   </action>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>Menu</class>
-   <extends>QMenuBar</extends>
-   <header>menu.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>
